@@ -7,7 +7,7 @@ namespace _2FA
         //Made by: Shane
         //http://stackoverflow.com/a/7135008/1242
         //[Edited by henkje]
-        public static byte[] ToBytes(string Input)
+        public static byte[] ToArray(string Input)
         {
             Input = Input.TrimEnd('='); //Remove padding characters.
             int ByteCount = Input.Length * 5 / 8;
@@ -18,7 +18,7 @@ namespace _2FA
 
             foreach (char c in Input)
             {
-                int cValue = CharToValue(c);
+                int cValue = EncodeChar(c);
 
                 if (BitsRemaining > 5)
                 {
@@ -36,14 +36,14 @@ namespace _2FA
                 }
             }
 
-            //When not end with a full byte[].
+            //When not ended with a full byte[].
             if (ArrayIndex != ByteCount)
                 ReturnArray[ArrayIndex] = CurByte;
 
             return ReturnArray;
         }
 
-        private static int CharToValue(char c)
+        private static int EncodeChar(char c)
         {
             int value = (int)c;
 

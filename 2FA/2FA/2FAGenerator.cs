@@ -16,14 +16,14 @@ using System.Security.Cryptography;
 
 namespace _2FA
 {
-    class _2FAGenerator
+    public class _2FAGenerator
     {     
         /// <summary>
         /// Used to Generate 2FA code,
         /// </summary>
         byte[] Secret;
         public _2FAGenerator(string Secret)=>
-            this.Secret = Base32.ToBytes(Secret);
+            this.Secret = Base32.ToArray(Secret);
 
         /// <summary>
         /// Generate a 2FA code
@@ -60,10 +60,21 @@ namespace _2FA
         }
 
         /// <summary>
-        /// Check a passed code.
+        /// Validate a passed code.
         /// </summary>
         /// <param name="_2FACode">6 digit 2FA code</param>
-        public bool CheckCode(string _2FACode)=>
+        public bool ValidateCode(string _2FACode)=>
             GenerateCode().Equals(_2FACode);
+
+        /// <summary>
+        /// Generate a new secret
+        /// </summary>
+        /// <returns>Generated secret</returns>
+        public static string GenerateSecret()
+        {
+            byte[] RandomBytes = new byte[32];
+            new RNGCryptoServiceProvider().GetBytes(RandomBytes);
+            return string.Concat(RandomBytes.Select(v => "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567"[v & 31]));
+        }
     }
 }

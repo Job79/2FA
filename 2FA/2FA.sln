@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.329
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2FA", "2FA\2FA.csproj", "{AF97C1D6-5D94-4311-AA7D-4F06645DE9BF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "2FA", "2FA\2FA.csproj", "{AF97C1D6-5D94-4311-AA7D-4F06645DE9BF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
