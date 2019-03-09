@@ -16,7 +16,7 @@ namespace Example
         static void Main(string[] args)
         {
             //Generate 2FA code(Client)
-            var _2FAGenerator = new _2FAGenerator("KQW4XT5ZUO7ERYRDUKU32FRMSSBDKFBU");
+            var _2FAGenerator = new _2FAGenerator("SECRET");
             Console.WriteLine(_2FAGenerator.GenerateCode());
             
             //Get input from console.
@@ -26,8 +26,11 @@ namespace Example
             while ((Code = Console.ReadLine()).Length != 6);
 
             //Check 2FA code(Server)
-            Console.WriteLine(_2FAGenerator.CheckCode(Code)?"Code is valid.":"Code is invalid.");
+            Console.WriteLine(_2FAGenerator.ValidateCode(Code)?"Code is valid.":"Code is invalid.");
             Console.ReadLine();
+            
+            //Generate new 2FA secret (static)
+            string Secret = _2FAGenerator.GenerateSecret();
         }
     }        
 }
