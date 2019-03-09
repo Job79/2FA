@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <RootNamespace>_2FA</RootNamespace>
+    <Authors>Henkje</Authors>
+    <Company>HenkSharp</Company>
+    <Description>Generate 2FA codes.</Description>
+    <Copyright>Henkje 2019</Copyright>
+    <PackageProjectUrl>https://github.com/GHenkje/2FA</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/GHenkje/2FA</RepositoryUrl>
+    <PackageTags>2FA</PackageTags>
+    <PackageLicenseUrl>https://github.com/GHenkje/2FA/blob/master/LICENSE</PackageLicenseUrl>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+
+</Project>
