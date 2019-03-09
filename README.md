@@ -16,7 +16,7 @@ namespace Example
         static void Main(string[] args)
         {
             //Generate 2FA code(Client)
-            var _2FAGenerator = new _2FAGenerator("KQW4XT5ZUO7ERYRDUKU32FRMSSBDKFBU");
+            var _2FAGenerator = new _2FAGenerator("SECRET");
             Console.WriteLine(_2FAGenerator.GenerateCode());
             
             //Get input from console.
