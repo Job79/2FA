@@ -58,5 +58,12 @@ namespace _2FA
 
             return _2FACode;
         }
+
+        /// <summary>
+        /// Check a passed code.
+        /// </summary>
+        /// <param name="_2FACode">6 digit 2FA code</param>
+        public bool CheckCode(string _2FACode)=>
+            GenerateCode().Equals(_2FACode);
     }
 }
