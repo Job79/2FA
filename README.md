@@ -26,8 +26,11 @@ namespace Example
             while ((Code = Console.ReadLine()).Length != 6);
 
             //Check 2FA code(Server)
-            Console.WriteLine(_2FAGenerator.CheckCode(Code)?"Code is valid.":"Code is invalid.");
+            Console.WriteLine(_2FAGenerator.ValidateCode(Code)?"Code is valid.":"Code is invalid.");
             Console.ReadLine();
+            
+            //Generate new 2FA secret (static)
+            string Secret = _2FAGenerator.GenerateSecret();
         }
     }        
 }
