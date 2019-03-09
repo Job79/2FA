@@ -1,5 +1,6 @@
 # 2FA
 Generate's a One Time Password with c#.
+
 Usage:
 ```cs
 using _2FA;
