@@ -1,6 +1,6 @@
 # 2FA
-Generate's a One Time Password with c#.
-Or check if a One Time Password is valid for the secret.
+Generate's a One Time Password with c#,
+or check if a One Time Password is valid for the secret.
 
 Compatible with Google Authenticator and Authy.
 
