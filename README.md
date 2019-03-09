@@ -1,5 +1,7 @@
 # 2FA
 Generate's a One Time Password with c#.
+Or check if a One Time Password is valid for the secret.
+Compatible with Google Authenticator and Authy.
 
 Usage:
 ```cs
@@ -10,13 +12,22 @@ namespace Example
 {
     class Program
     {
-        const string SECRET = "SECRET";
-        
         static void Main(string[] args)
         {
-            Console.WriteLine(new _2FAGenerator(SECRET).GenerateCode());
+            //Generate 2FA code(Client)
+            var _2FAGenerator = new _2FAGenerator("KQW4XT5ZUO7ERYRDUKU32FRMSSBDKFBU");
+            Console.WriteLine(_2FAGenerator.GenerateCode());
+            
+            //Get input from console.
+            string Code;
+            do
+                Console.Write("Enter a generated 2FA code to check: ");
+            while ((Code = Console.ReadLine()).Length != 6);
+
+            //Check 2FA code(Server)
+            Console.WriteLine(_2FAGenerator.CheckCode(Code)?"Code is valid.":"Code is invalid.");
             Console.ReadLine();
         }
-    }      
+    }        
 }
 ```
