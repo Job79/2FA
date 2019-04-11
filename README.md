@@ -16,21 +16,21 @@ namespace Example
         static void Main(string[] args)
         {
             //Generate 2FA code(Client)
-            var _2FAGenerator = new _2FAGenerator("SECRET");
-            Console.WriteLine(_2FAGenerator.GenerateCode());
+            var generator = new _2FAGenerator("SECRET");
+            Console.WriteLine(generator.GenerateCode());
             
             //Get input from console.
-            string Code;
+            string code;
             do
                 Console.Write("Enter a generated 2FA code to check: ");
-            while ((Code = Console.ReadLine()).Length != 6);
+            while ((code = Console.ReadLine()).Length != 6);
 
             //Check 2FA code(Server)
-            Console.WriteLine(_2FAGenerator.ValidateCode(Code)?"Code is valid.":"Code is invalid.");
+            Console.WriteLine(generator.ValidateCode(code)?"Code is valid.":"Code is invalid.");
             Console.ReadLine();
             
             //Generate new 2FA secret (static)
-            string Secret = _2FAGenerator.GenerateSecret();
+            string secret = _2FAGenerator.GenerateSecret();
         }
     }        
 }
