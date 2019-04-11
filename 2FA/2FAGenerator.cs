@@ -1,7 +1,16 @@
 ﻿/* 2FA
- * Copyright (C) 2019  Henkje (henkje@pm.me)
  * 
- * MIT license
+ * Copyright (c) 2019 henkje
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -22,8 +31,8 @@ namespace _2FA
         /// Used to Generate 2FA code,
         /// </summary>
         byte[] Secret;
-        public _2FAGenerator(string Secret)=>
-            this.Secret = Base32.ToArray(Secret);
+        public _2FAGenerator(string secret)=>
+            Secret = Base32.ToArray(secret);
 
         /// <summary>
         /// Generate a 2FA code
@@ -34,25 +43,25 @@ namespace _2FA
         {
             //Get timestamp.
             DateTime EPOCH = new DateTime(1970, 1, 1, 0, 0, 0);
-            long Timestamp = Convert.ToInt64(
+            long timestamp = Convert.ToInt64(
                 Math.Round((DateTime.UtcNow - EPOCH).TotalSeconds)) / 30;
 
             //Generate hash.
             byte[] HMAC = new HMACSHA1(Secret)
                 .ComputeHash(
-                BitConverter.GetBytes(Timestamp).Reverse().ToArray());
+                BitConverter.GetBytes(timestamp).Reverse().ToArray());
 
             //Generate 6 digit number.
-            int Offset = HMAC.Last() & 0x0F;
-            int Number = (
-               ((HMAC[Offset + 0] & 0x7f) << 24) |
-               ((HMAC[Offset + 1] & 0xff) << 16) |
-               ((HMAC[Offset + 2] & 0xff) << 8) |
-               (HMAC[Offset + 3] & 0xff)) % 1000000;
+            int offset = HMAC.Last() & 0x0F;
+            int number = (
+               ((HMAC[offset + 0] & 0x7f) << 24) |
+               ((HMAC[offset + 1] & 0xff) << 16) |
+               ((HMAC[offset + 2] & 0xff) << 8) |
+               (HMAC[offset + 3] & 0xff)) % 1000000;
 
             //int doesn't start with a 0.
             //Add the zero's back to it.
-            string _2FACode = Number.ToString();
+            string _2FACode = number.ToString();
             while (_2FACode.Length < 6)
                 _2FACode = '0' + _2FACode;
 
@@ -72,9 +81,9 @@ namespace _2FA
         /// <returns>Generated secret</returns>
         public static string GenerateSecret()
         {
-            byte[] RandomBytes = new byte[32];
-            new RNGCryptoServiceProvider().GetBytes(RandomBytes);
-            return string.Concat(RandomBytes.Select(v => "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567"[v & 31]));
+            byte[] randomBytes = new byte[32];
+            new RNGCryptoServiceProvider().GetBytes(randomBytes);
+            return string.Concat(randomBytes.Select(v => "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567"[v & 31]));
         }
     }
 }
