@@ -1,8 +1,9 @@
 <p align="center">
   <b>2FA</b>
   <br/>
-  <img src="https://img.shields.io/badge/License-MIT-blue.svg">
-  <img src="https://img.shields.io/badge/version-1.0.1-blue.svg">
+  <img src="https://img.shields.io/badge/License-MIT-green.svg">
+  <img src="https://img.shields.io/badge/version-1.0.1-green.svg">
+  <img src="https://img.shields.io/badge/build-passing-green.svg">
   <br/>
   <br/>
   <a>2FA library compatible with google authenticator and authy<a/>
