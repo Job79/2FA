@@ -1,13 +1,17 @@
-# 2FA
-Generate's a One Time Password with c#,
-or check if a One Time Password is valid for the secret.
+<p align="center">
+  <b>2FA</b>
+  <br/>
+  <img src="https://img.shields.io/badge/License-MIT-blue.svg">
+  <img src="https://img.shields.io/badge/version-1.0.1-blue.svg">
+  <br/>
+  <br/>
+  <a>2FA library compatible with google authenticator and authy<a/>
+  <br/><br/>
+</p>
 
-Compatible with Google Authenticator and Authy.
-
-Usage:
 ```cs
-using _2FA;
 using System;
+using TwoFactorAuthentication;
 
 namespace Example
 {
@@ -16,7 +20,7 @@ namespace Example
         static void Main(string[] args)
         {
             //Generate 2FA code(Client)
-            var generator = new _2FAGenerator("SECRET");
+            var generator = new TwoFactor("SECRET");
             Console.WriteLine(generator.GenerateCode());
             
             //Get input from console.
@@ -30,7 +34,7 @@ namespace Example
             Console.ReadLine();
             
             //Generate new 2FA secret (static)
-            string secret = _2FAGenerator.GenerateSecret();
+            string secret = TwoFactor.GenerateSecret();
         }
     }        
 }
