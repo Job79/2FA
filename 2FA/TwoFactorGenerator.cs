@@ -30,7 +30,7 @@ namespace TwoFactorAuthentication
         /// <summary>
         /// Used to Generate 2FA code,
         /// </summary>
-        byte[] Secret;
+        public readonly byte[] Secret;
         public TwoFactor(string secret)=>
             Secret = Base32.ToArray(secret);
 
