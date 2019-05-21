@@ -1,4 +1,4 @@
-﻿/* 2FA
+﻿/* TwoFactor
  * 
  * Copyright (c) 2019 henkje
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -23,15 +23,15 @@ using System;
 using System.Linq;
 using System.Security.Cryptography;
 
-namespace _2FA
+namespace TwoFactorAuthentication
 {
-    public class _2FAGenerator
+    public class TwoFactor
     {     
         /// <summary>
         /// Used to Generate 2FA code,
         /// </summary>
         byte[] Secret;
-        public _2FAGenerator(string secret)=>
+        public TwoFactor(string secret)=>
             Secret = Base32.ToArray(secret);
 
         /// <summary>
@@ -61,19 +61,15 @@ namespace _2FA
 
             //int doesn't start with a 0.
             //Add the zero's back to it.
-            string _2FACode = number.ToString();
-            while (_2FACode.Length < 6)
-                _2FACode = '0' + _2FACode;
-
-            return _2FACode;
+            return number.ToString().PadLeft(6, '0');
         }
 
         /// <summary>
         /// Validate a passed code.
         /// </summary>
-        /// <param name="_2FACode">6 digit 2FA code</param>
-        public bool ValidateCode(string _2FACode)=>
-            GenerateCode().Equals(_2FACode);
+        /// <param name="twoFactorCode">6 digit 2FA code</param>
+        public bool ValidateCode(string twoFactorCode)=>
+            GenerateCode().Equals(twoFactorCode);
 
         /// <summary>
         /// Generate a new secret

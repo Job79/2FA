@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace _2FA
+namespace TwoFactorAuthentication
 {
     internal class Base32
     {
