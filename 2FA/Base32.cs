@@ -1,20 +1,25 @@
-﻿using System;
+﻿/* Made by: Shane
+ * Edited by me.
+ * http://stackoverflow.com/a/7135008/1242
+ * 
+ * This class is used to convert the secret 
+ * from a base32 string to a byte array.
+ */
+
+using System;
 
 namespace TwoFactorAuthentication
 {
     internal class Base32
     {
-        //Made by: Shane
-        //http://stackoverflow.com/a/7135008/1242
-        //[Edited by henkje]
         public static byte[] ToArray(string input)
         {
             input = input.TrimEnd('='); //Remove padding characters.
-            int byteCount = input.Length * 5 / 8;
+            int byteCount = input.Length * 5 / 8;//this must be TRUNCATED
             byte[] returnArray = new byte[byteCount];
 
             byte curByte = 0, bitsRemaining = 8;
-            int mask = 0, arrayIndex = 0;
+            int mask, arrayIndex = 0;
 
             foreach (char c in input)
             {
@@ -36,7 +41,7 @@ namespace TwoFactorAuthentication
                 }
             }
 
-            //When not ended with a full byte[].
+            //if we didn't end with a full byte
             if (arrayIndex != byteCount)
                 returnArray[arrayIndex] = curByte;
 
@@ -56,7 +61,7 @@ namespace TwoFactorAuthentication
             //Lowercase letters.
             else if (value < 123 && value > 96)
                 return value - 97;
-            else throw new ArgumentException("Character is not a valid Base32 character.");
+            else throw new ArgumentException("Secret is not a valid Base32 string.");
         }
     }
 }

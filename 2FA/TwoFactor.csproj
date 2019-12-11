@@ -3,17 +3,27 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
     <RootNamespace>TwoFactorAuthentication</RootNamespace>
-    <Authors>Henkje</Authors>
-    <Company>HenkSharp</Company>
+    <Authors></Authors>
+    <Company></Company>
     <Description>Generate 2FA codes.</Description>
-    <Copyright>Henkje 2019</Copyright>
+    <Copyright></Copyright>
     <PackageProjectUrl>https://github.com/GHenkje/2FA</PackageProjectUrl>
     <RepositoryUrl>https://github.com/GHenkje/2FA</RepositoryUrl>
     <PackageTags>2FA</PackageTags>
-    <PackageLicenseUrl>https://github.com/GHenkje/2FA/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageLicenseUrl></PackageLicenseUrl>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <SignAssembly>false</SignAssembly>
     <Version>1.0.1</Version>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <AssemblyVersion>1.0.2.0</AssemblyVersion>
+    <FileVersion>1.0.2.0</FileVersion>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
 
 </Project>
